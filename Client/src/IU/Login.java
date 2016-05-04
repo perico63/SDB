@@ -164,7 +164,6 @@ public class Login extends javax.swing.JFrame {
         String user = txtf_login.getText();
         String senha = txtf_senha.getText();
         Socket clientSocket = null;
-        System.out.println(ip + porta + user + senha);
         
         try {                
             clientSocket = new Socket(ip, porta);
@@ -177,6 +176,7 @@ public class Login extends javax.swing.JFrame {
             out.writeUTF(msgClient);
                        
             String resultServidor = in.readUTF();
+            System.out.println(resultServidor);
             Mensagem msg = new Mensagem(resultServidor);
             String result = msg.avaliarMensagem();   
             System.out.println(result);
