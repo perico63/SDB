@@ -5,6 +5,8 @@
  */
 package Mensagem;
 
+import IU.TPrincipal;
+
 /**
  *
  * @author diego
@@ -17,25 +19,39 @@ public class Mensagem {
         this.mensagem = mensagem;
     }
     
-    public String avaliarMensagem(){
+    public boolean avaliarMensagem(){
     
         String m[] = this.mensagem.split(";");
         
         switch(m[0]){
             case "02":
                 if(m[1].equals("1")){
-                    return "Sucesso";
-                }else if (m[1].equals("2")){
-                    return "Erro";
+                    return true;
+                }else if (m[1].equals("0")){
+                    return false;
+                } 
+            case "12": 
+                if(m[1].equals("1")){
+                    return true;
+                }else if (m[1].equals("0")){
+                    return false;
+                } 
+            case "14":
+                if(m[1].equals("1")){
+                    return true;
+                } else if(m[1].equals("0")){
+                    return false;
+                }
+            case "16":
+                 if(m[1].equals("1")){
+                    return true;
+                } else if(m[1].equals("0")){
+                    return false;
                 }                
-                break;
-                
             default :
                 break;
         }
-    
-        
-        return "";
+        return false;
     }
     
 }

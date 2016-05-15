@@ -17,11 +17,12 @@ import java.net.Socket;
  * @author diego
  */
 public class Servidor extends Thread {
-    
+    BD banco = null;
     private Socket clientSocket;
     
     public Servidor(Socket clientSocket){
         this.clientSocket = clientSocket;
+        banco = new BD();
         start();
     }
     
@@ -48,18 +49,17 @@ public class Servidor extends Thread {
     public void run(){
         try{
             System.out.println("Novo Cliente Conectado");
-            
             DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
-            DataInputStream in = new DataInputStream(clientSocket.getInputStream());
-            
-            Mensagem mensagem = new Mensagem(in.readUTF());
-            String result = mensagem.avaliarMensagem();            
-            out.writeUTF(result);
-            
-            out.close();
-            in.close();
-            clientSocket.close();
-            System.out.println("Conexao atual encerrada");            
+            DataInputStream in = new DataInputStream(clientSocket.getInputStream()); 
+            while(true) {                              
+                Mensagem msg = new Mensagem(in.readUTF(), banco);
+                String result = msg.avaliarMensagem();            
+                out.writeUTF(result); 
+            }
+            //out.close();
+            //in.close();
+            //clientSocket.close();
+            //System.out.println("Conexao atual encerrada");            
         } catch(IOException e){
             
         }
