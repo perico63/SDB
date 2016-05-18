@@ -64,7 +64,6 @@ public class PCadastrarEvento extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLTituloPainelInterno = new javax.swing.JLabel();
-        jBCancelarEdicao = new javax.swing.JButton();
         jLNotificacaoIntervaloInvalido = new javax.swing.JLabel();
         jBSalvarAtividade = new javax.swing.JButton();
         jTData = new javax.swing.JTextField();
@@ -99,14 +98,6 @@ public class PCadastrarEvento extends javax.swing.JPanel {
         jLTituloPainelInterno.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLTituloPainelInterno.setText("Campo de Gerenciamento de Datas");
 
-        jBCancelarEdicao.setText("Cancelar Edição");
-        jBCancelarEdicao.setEnabled(false);
-        jBCancelarEdicao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCancelarEdicaoActionPerformed(evt);
-            }
-        });
-
         jLNotificacaoIntervaloInvalido.setForeground(new java.awt.Color(255, 0, 0));
 
         jBSalvarAtividade.setText("Salvar");
@@ -133,7 +124,7 @@ public class PCadastrarEvento extends javax.swing.JPanel {
                         .addComponent(jLTituloPainelInterno)
                         .addGap(96, 96, 96)
                         .addComponent(jLNotificacaoIntervaloInvalido)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(14, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -147,8 +138,7 @@ public class PCadastrarEvento extends javax.swing.JPanel {
                             .addComponent(jTHoraFinal))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jBCancelarEdicao)
-                        .addGap(85, 85, 85)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jBSalvarAtividade)
                         .addGap(39, 39, 39))))
         );
@@ -175,9 +165,7 @@ public class PCadastrarEvento extends javax.swing.JPanel {
                             .addComponent(jTHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBSalvarAtividade)
-                            .addComponent(jBCancelarEdicao))
+                        .addComponent(jBSalvarAtividade)
                         .addGap(43, 43, 43))))
         );
 
@@ -203,7 +191,7 @@ public class PCadastrarEvento extends javax.swing.JPanel {
                         .addComponent(jLResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -232,11 +220,6 @@ public class PCadastrarEvento extends javax.swing.JPanel {
     private void jCBTipoAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBTipoAtividadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBTipoAtividadeActionPerformed
-
-    private void jBCancelarEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarEdicaoActionPerformed
-        /* limparCamposData();
-        jBCancelarEdicao.setEnabled(false);*/
-    }//GEN-LAST:event_jBCancelarEdicaoActionPerformed
 
     private void jBSalvarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarAtividadeActionPerformed
         
@@ -276,7 +259,6 @@ public class PCadastrarEvento extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBCancelarEdicao;
     private javax.swing.JButton jBSalvarAtividade;
     private javax.swing.JComboBox jCBTipoAtividade;
     private javax.swing.JLabel jLNotificacaoIntervaloInvalido;
