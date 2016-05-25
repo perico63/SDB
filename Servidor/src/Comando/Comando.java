@@ -34,7 +34,7 @@ public class Comando {
     public boolean cadastrarEvento(String nome, String data, String horaInicial, String horaFinal, String tipoEvento){
         Evento novoEvento = new Evento(nome, data, horaInicial, horaFinal, tipoEvento);  
         System.out.println("criou  obj evento");
-        banco.cadastrarEvento(novoEvento);        
+        banco.cadastrarEvento(novoEvento);   
         return true;
     }
     
