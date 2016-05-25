@@ -14,26 +14,49 @@ import java.util.ArrayList;
 public class BD {
         
     ArrayList<Evento> eventos = null;
+    ArrayList<Aluno> alunos = null;
     
     public BD(){
-        this.eventos = eventos = new ArrayList();
+        this.eventos = new ArrayList<>();
+        this.alunos = new ArrayList<>();
     }
     
     public void cadastrarEvento(Evento evento){
-        System.out.println("cadastrado com sucesso");
+        System.out.println("Vento Cadastrado com Sucesso");
         this.eventos.add(evento);        
     }
     
     public void alterarEvento(Evento evento, int codigoEvento){
+        System.out.println("Evento alterado com Sucesso");
         this.eventos.set(codigoEvento, evento);
     } 
     
     public void excluirEvento(int codigoEvento){
+        System.out.println("Evento Excluído com Sucesso");
         this.eventos.remove(codigoEvento);
     }
     
-    public ArrayList<Evento> getBanco(){
+    public ArrayList<Evento> getEventos(){
         return eventos;
+    }
+    
+    public void cadastrarAluno(Aluno aluno){
+        System.out.println("Aluno Cadastrado com Sucesso");
+        this.alunos.add(aluno);
+    } 
+    
+    public void alterarAluno(Aluno aluno, int codigoAluno){
+        System.out.println("Aluno Alterado com Sucesso");
+        this.alunos.set(codigoAluno, aluno);
+    }  
+    
+    public void excluirAluno(int codigoAluno){
+        System.out.println("Aluno Excluído com Sucesso");
+        this.alunos.remove(codigoAluno);
+    }
+    
+    public ArrayList<Aluno> getAlunos(){
+        return alunos;
     }
     
 }

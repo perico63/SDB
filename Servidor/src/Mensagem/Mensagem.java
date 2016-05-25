@@ -51,15 +51,36 @@ public class Mensagem {
                 break;
             case "15":
                 if(cmd.excluirEvento(Integer.parseInt(m[1]))){
-                    System.out.println("sucesso na exclusao");
                     respostaServidor = "16;1";
                 } else {
                     respostaServidor = "16;0";
                 }
                 break;
             case "17":
-                 return cmd.getAllEventos();           
-            
+                 return cmd.getAllEventos();
+            case "21":
+                if(cmd.cadastroAluno(m[1], m[2], m[3], Integer.parseInt(m[4]), m[5], m[6])){
+                    respostaServidor = "22;1";
+                } else {
+                    respostaServidor = "22;0";
+                }
+                break;
+            case "23":
+                if(cmd.alterarAluno(Integer.parseInt(m[1]), m[2], m[3], m[4], Integer.parseInt(m[5]), m[6], m[7])){
+                    respostaServidor = "24;1";
+                } else{
+                    respostaServidor = "24;0";
+                }
+                break;
+            case "25":
+                if(cmd.excluirAluno(Integer.parseInt(m[1]))){
+                    respostaServidor = "26;1";
+                } else {
+                    respostaServidor = "26;0";
+                }
+                break;
+            case "27": 
+                return cmd.getAllAlunos();
             default:
                respostaServidor = "00";        
         }      

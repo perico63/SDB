@@ -47,7 +47,25 @@ public class Mensagem {
                     return true;
                 } else if(m[1].equals("0")){
                     return false;
-                }                
+                }    
+            case "22": 
+                if(m[1].equals("1")){
+                    return true;
+                } else if(m[1].equals("0")){
+                    return false;
+                }
+            case "24":
+                if(m[1].equals("1")){
+                    return true;
+                } else if(m[1].equals("0")){
+                    return false;
+                }
+            case "26":
+                if(m[1].equals("1")){
+                    return true;
+                } else if(m[1].equals("0")){
+                    return false;
+                }
             default :
                 break;
         }

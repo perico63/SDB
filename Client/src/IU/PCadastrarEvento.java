@@ -222,7 +222,7 @@ public class PCadastrarEvento extends javax.swing.JPanel {
     }//GEN-LAST:event_jCBTipoAtividadeActionPerformed
 
     private void jBSalvarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarAtividadeActionPerformed
-        
+    
         System.out.println(jCBTipoAtividade.getModel().getSelectedItem().toString());
         String tipoAtividade = jCBTipoAtividade.getModel().getSelectedItem().toString();
         //int codAtividade = retornarCodigoTipoAtividade(jCBTipoAtividade.getModel().getSelectedItem().toString());

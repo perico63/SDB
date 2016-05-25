@@ -5,6 +5,7 @@
  */
 package Comando;
 
+import Controle.Aluno;
 import Controle.BD;
 import Controle.Evento;
 
@@ -51,18 +52,48 @@ public class Comando {
     
     public String getAllEventos(){
         String todosEventos = "18|";
-        for (int i = 0; i < banco.getBanco().size(); i++) {
+        for (int i = 0; i < banco.getEventos().size(); i++) {            
+            todosEventos = todosEventos.concat(i + ";" + banco.getEventos().get(i).getNome() + ";" + 
+                    banco.getEventos().get(i).getData() + ";" + banco.getEventos().get(i).getHoraInicial() + ";" 
+                    + banco.getEventos().get(i).getHoraFinal() + ";" + banco.getEventos().get(i).getTipoEvento());
             
-            todosEventos = todosEventos.concat(i + ";" + banco.getBanco().get(i).getNome() + ";" + 
-                    banco.getBanco().get(i).getData() + ";" + banco.getBanco().get(i).getHoraInicial() + ";" 
-                    + banco.getBanco().get(i).getHoraFinal() + ";" + banco.getBanco().get(i).getTipoEvento());
-            
-            if(i != banco.getBanco().size()-1)
+            if(i != banco.getEventos().size()-1)
                 todosEventos = todosEventos.concat("|");                
         }
         System.out.println(todosEventos);
         return todosEventos;
     }
     
+    public boolean cadastroAluno(String ra, String nome, String curso, int periodo, String email, String telefone){
+        Aluno novoaluno = new Aluno(ra, nome, curso, periodo, email, telefone);
+        System.out.println("Obj Aluno Criado");
+        banco.cadastrarAluno(novoaluno);
+        return true;
+    }
     
+    public boolean alterarAluno(int codigoAluno, String ra, String nome, String curso, int periodo, 
+            String email, String telefone){        
+         Aluno novoaluno = new Aluno(ra, nome, curso, periodo, email, telefone);
+         banco.alterarAluno(novoaluno, codigoAluno);
+         return true;
+    }
+    
+    public boolean excluirAluno(int codigoAluno){
+        banco.excluirAluno(codigoAluno);
+        return true;
+    }
+    
+    public String getAllAlunos(){
+        String todosAlunos = "28|";
+        for (int i = 0; i < banco.getAlunos().size(); i++) {            
+            todosAlunos = todosAlunos.concat(i + ";" + banco.getAlunos().get(i).getRa()+ ";" + 
+                    banco.getAlunos().get(i).getNome() + ";" + banco.getAlunos().get(i).getCurso() + ";" 
+                    + banco.getAlunos().get(i).getPeriodo() + ";" + banco.getAlunos().get(i).getEmail() 
+                    + ";" + banco.getAlunos().get(i).getTelefone());            
+            if(i != banco.getAlunos().size()-1)
+                todosAlunos = todosAlunos.concat("|");                
+        }
+        System.out.println(todosAlunos);
+        return todosAlunos;
+    }
 }
