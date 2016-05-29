@@ -14,18 +14,18 @@ import java.util.logging.Logger;
  *
  * @author diego
  */
-public class PAlterarAtividade extends javax.swing.JPanel {
+public class PAlterarEvento extends javax.swing.JPanel {
     String resultServidor = "";
     private Evento eventoSelecionado = null;
     private TPrincipal framePai= null;
     /**
      * Creates new form JAlterarAtividade
      */
-    public PAlterarAtividade() {
+    public PAlterarEvento() {
         initComponents();
     }
     
-    public PAlterarAtividade(TPrincipal framePai, Evento eventoSelecionado) {
+    public PAlterarEvento(TPrincipal framePai, Evento eventoSelecionado) {
         this.framePai = framePai;
         this.eventoSelecionado = eventoSelecionado;
         initComponents();
@@ -248,7 +248,7 @@ public class PAlterarAtividade extends javax.swing.JPanel {
                 jLResultadoAlteracao.setText("Evento Não Alterado");
             }
         } catch (IOException ex) {
-            Logger.getLogger(PAlterarAtividade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PAlterarEvento.class.getName()).log(Level.SEVERE, null, ex);
         }
             
 

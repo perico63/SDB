@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controle;
+package IU;
 
 /**
  *
@@ -11,6 +11,7 @@ package Controle;
  */
 public class Aluno {
     
+    private String codAluno;
     private String ra;
     private String nome;
     private String curso;
@@ -18,7 +19,8 @@ public class Aluno {
     private String email;
     private String telefone;
 
-    public Aluno(String ra, String nome, String curso, String periodo, String email, String telefone){
+    public Aluno(String codAluno,String ra, String nome, String curso, String periodo, String email, String telefone){
+        this.codAluno = codAluno;
         this.ra = ra;
         this.nome = nome;
         this.curso = curso;
@@ -75,6 +77,20 @@ public class Aluno {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    /**
+     * @return the codAluno
+     */
+    public String getCodAluno() {
+        return codAluno;
+    }
+
+    /**
+     * @param codAluno the codAluno to set
+     */
+    public void setCodAluno(String codAluno) {
+        this.codAluno = codAluno;
     }
     
 }

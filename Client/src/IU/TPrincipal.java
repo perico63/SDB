@@ -106,6 +106,11 @@ public class TPrincipal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem3);
 
         jMenuItem5.setText("Alterar/Excluir");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
@@ -119,7 +124,7 @@ public class TPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        
         PCadastrarEvento novopainel = new PCadastrarEvento(this);
         mudarPainel(novopainel, "Cadastrar Evento");        
         
@@ -139,7 +144,7 @@ public class TPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+
        try {
             PSelecionarEvento novoselecionar = new PSelecionarEvento(this);
             mudarPainel(novoselecionar, "Alterar/Excluir Evento");
@@ -151,8 +156,18 @@ public class TPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        PCadastrarAluno novopainel = new PCadastrarAluno(this);
+        mudarPainel(novopainel, "Cadastrar Aluno");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        try {
+            PSelecionarAluno novoselecionar = new PSelecionarAluno(this);
+            mudarPainel(novoselecionar, "Alterar/Excluir Aluno");
+        } catch (IOException ex) {
+            Logger.getLogger(TPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments

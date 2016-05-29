@@ -14,23 +14,35 @@ import java.util.logging.Logger;
  *
  * @author diego
  */
-public class PCadastrarAluno extends javax.swing.JPanel {
+public class PAlterarAluno extends javax.swing.JPanel {
     
     TPrincipal framepai = null;
+    private Aluno alunoSelecionado = null;
     String resultServidor = "";
     
     /**
      * Creates new form PCadastrarAluno
      */
     
-    public PCadastrarAluno(TPrincipal framepai){
-        this.framepai = framepai;
+    public PAlterarAluno() {
         initComponents();
     }
     
-    public PCadastrarAluno() {
+    public PAlterarAluno(TPrincipal framepai, Aluno alunoSelecionado){
+        this.framepai = framepai;
+        this.alunoSelecionado = alunoSelecionado;
         initComponents();
+        
+        jTRA.setText(alunoSelecionado.getRa());
+        jTNome.setText(alunoSelecionado.getNome());
+        jTCurso.setText(alunoSelecionado.getCurso());
+        jTPeriodo.setText(alunoSelecionado.getPeriodo());
+        jTEmail.setText(alunoSelecionado.getEmail());
+        jTTelefone.setText(alunoSelecionado.getTelefone());
+        
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,7 +64,7 @@ public class PCadastrarAluno extends javax.swing.JPanel {
         jTEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTTelefone = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jBAlterar = new javax.swing.JButton();
         jTCurso = new javax.swing.JTextField();
         jLMsg = new javax.swing.JLabel();
 
@@ -68,10 +80,10 @@ public class PCadastrarAluno extends javax.swing.JPanel {
 
         jLabel6.setText("Telefone:");
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBAlterar.setText("Alterar");
+        jBAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBAlterarActionPerformed(evt);
             }
         });
 
@@ -100,9 +112,9 @@ public class PCadastrarAluno extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                                .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
+                                .addComponent(jBAlterar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -146,7 +158,7 @@ public class PCadastrarAluno extends javax.swing.JPanel {
                     .addComponent(jTTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jBAlterar)
                     .addComponent(jLMsg))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
@@ -156,10 +168,10 @@ public class PCadastrarAluno extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCursoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
         // TODO add your handling code here:
         String mensagem = " ";
-        mensagem = "21;" + jTRA.getText() + ";" + jTNome.getText() + ";" + jTCurso.getText() 
+        mensagem = "23;" + alunoSelecionado.getCodAluno() + ";" + jTRA.getText() + ";" + jTNome.getText() + ";" + jTCurso.getText() 
                 + ";" + jTPeriodo.getText() + ";" + jTEmail.getText() + ";" + jTTelefone.getText();
         System.out.println(mensagem);
         
@@ -177,20 +189,20 @@ public class PCadastrarAluno extends javax.swing.JPanel {
             jTTelefone.setText("");
             
             if(msg.avaliarMensagem()){
-                jLMsg.setText("Aluno Cadastrado!");
+                jLMsg.setText("Aluno Alterado!");
             } else {
-                jLMsg.setText("Aluno não Cadastrado!");
+                jLMsg.setText("Aluno não Alterado!");
             }
             
             
         } catch(IOException ex){
-            Logger.getLogger(PCadastrarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBAlterarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBAlterar;
     private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

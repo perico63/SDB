@@ -64,14 +64,14 @@ public class Comando {
         return todosEventos;
     }
     
-    public boolean cadastroAluno(String ra, String nome, String curso, int periodo, String email, String telefone){
+    public boolean cadastroAluno(String ra, String nome, String curso, String periodo, String email, String telefone){
         Aluno novoaluno = new Aluno(ra, nome, curso, periodo, email, telefone);
         System.out.println("Obj Aluno Criado");
         banco.cadastrarAluno(novoaluno);
         return true;
     }
     
-    public boolean alterarAluno(int codigoAluno, String ra, String nome, String curso, int periodo, 
+    public boolean alterarAluno(int codigoAluno, String ra, String nome, String curso, String periodo, 
             String email, String telefone){        
          Aluno novoaluno = new Aluno(ra, nome, curso, periodo, email, telefone);
          banco.alterarAluno(novoaluno, codigoAluno);

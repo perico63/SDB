@@ -59,14 +59,14 @@ public class Mensagem {
             case "17":
                  return cmd.getAllEventos();
             case "21":
-                if(cmd.cadastroAluno(m[1], m[2], m[3], Integer.parseInt(m[4]), m[5], m[6])){
+                if(cmd.cadastroAluno(m[1], m[2], m[3], m[4], m[5], m[6])){
                     respostaServidor = "22;1";
                 } else {
                     respostaServidor = "22;0";
                 }
                 break;
             case "23":
-                if(cmd.alterarAluno(Integer.parseInt(m[1]), m[2], m[3], m[4], Integer.parseInt(m[5]), m[6], m[7])){
+                if(cmd.alterarAluno(Integer.parseInt(m[1]), m[2], m[3], m[4], m[5], m[6], m[7])){
                     respostaServidor = "24;1";
                 } else{
                     respostaServidor = "24;0";

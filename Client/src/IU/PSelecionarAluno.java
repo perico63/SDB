@@ -12,50 +12,50 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public final class PSelecionarEvento extends javax.swing.JPanel {
+public final class PSelecionarAluno extends javax.swing.JPanel {
     String resultServidor = "";
     private TPrincipal framePai;
     private int linha;    
-    private ArrayList<Evento> arrayEventos;
+    private ArrayList<Aluno> arrayAlunos;
     
-    public PSelecionarEvento() {
+    public PSelecionarAluno() {
         initComponents();
     }
     
-    public PSelecionarEvento(TPrincipal framePai) throws IOException {
+    public PSelecionarAluno(TPrincipal framePai) throws IOException {
        
         initComponents();
         adicionaListner();        
         this.framePai = framePai;           
         
-        String mensagem = "17";
+        String mensagem = "27";
         framePai.getOut().writeUTF(mensagem);           
         String resultServidor = framePai.getIn().readUTF();
         System.out.println(resultServidor);
         resultServidor.trim();
         String conteudo[] = resultServidor.split("\\|");
         //popula array
-        Evento evt;
-        arrayEventos = new ArrayList<>();
+        Aluno evt;
+        arrayAlunos = new ArrayList<>();
         
         for (int i = 1; i < conteudo.length; i++) { 
-            String descEvento[] = conteudo[i].split(";");            
-            evt = new Evento();
-            evt.setCodEvento(descEvento[0]);
-            System.out.println(evt.getCodEvento());
-            evt.setNome(descEvento[1]);
-            evt.setData(descEvento[2]);
-            evt.setHoraInicial(descEvento[3]);
-            evt.setHoraFinal(descEvento[4]); 
-            evt.setTipoEvento(descEvento[5]);
-            arrayEventos.add(evt);
+            String descAluno[] = conteudo[i].split(";");            
+            evt = new Aluno();
+            evt.setCodAluno(descAluno[0]);
+            evt.setRa(descAluno[1]);
+            evt.setNome(descAluno[2]);
+            evt.setCurso(descAluno[3]);
+            evt.setPeriodo((descAluno[4])); 
+            evt.setEmail(descAluno[5]);
+            evt.setTelefone(descAluno[6]);
+            arrayAlunos.add(evt);
         }
         
         popularTabela();
     }
     
     public void adicionaListner(){
-        jTableEventos.addMouseListener(new MouseAdapter() {
+        jTableAlunos.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 1) {
                     JTable target = (JTable)e.getSource();
@@ -64,12 +64,12 @@ public final class PSelecionarEvento extends javax.swing.JPanel {
             }
         });
     }
-    
+
     public void popularTabela(){
-       for (int i = 0; i < arrayEventos.size() ; i++) {
-            DefaultTableModel model = (DefaultTableModel)jTableEventos.getModel();
-            model.insertRow(model.getRowCount(), new Object[]{arrayEventos.get(i).getCodEvento(),arrayEventos.get(i).getNome(), arrayEventos.get(i).getData(),
-                arrayEventos.get(i).getHoraInicial(), arrayEventos.get(i).getHoraFinal(), arrayEventos.get(i).getTipoEvento()}); 
+       for (int i = 0; i < arrayAlunos.size() ; i++) {
+            DefaultTableModel model = (DefaultTableModel)jTableAlunos.getModel();
+            model.insertRow(model.getRowCount(), new Object[]{arrayAlunos.get(i).getCodAluno(),arrayAlunos.get(i).getRa(), arrayAlunos.get(i).getNome(),
+                arrayAlunos.get(i).getCurso(), arrayAlunos.get(i).getPeriodo(), arrayAlunos.get(i).getEmail(), arrayAlunos.get(i).getTelefone()}); 
         }
     }
 
@@ -78,33 +78,33 @@ public final class PSelecionarEvento extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableEventos = new javax.swing.JTable();
+        jTableAlunos = new javax.swing.JTable();
         jBSelecionarAtividade = new javax.swing.JButton();
         jBExcluirAtividade = new javax.swing.JButton();
         jLResultadoExclusao = new javax.swing.JLabel();
 
-        jTableEventos.setModel(new javax.swing.table.DefaultTableModel(
+        jTableAlunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Cod", "Título", "Data", "Hora Inicial", "Hora Final", "Tipo Evento"
+                "Cod", "RA", "Nome", "Curso", "Periodo", "E-mail", "Telefone"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTableEventos.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableEventosMouseClicked(evt);
+                jTableAlunosMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTableEventos);
+        jScrollPane2.setViewportView(jTableAlunos);
 
         jBSelecionarAtividade.setText("Selecionar");
         jBSelecionarAtividade.setEnabled(false);
@@ -156,31 +156,31 @@ public final class PSelecionarEvento extends javax.swing.JPanel {
 
     private void jBSelecionarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSelecionarAtividadeActionPerformed
        
-        Evento eventoSelecionado = new Evento(arrayEventos.get(linha).getCodEvento(), arrayEventos.get(linha).getNome(),
-        arrayEventos.get(linha).getData(), arrayEventos.get(linha).getHoraInicial(), arrayEventos.get(linha).getHoraFinal(),
-        arrayEventos.get(linha).getTipoEvento());
+        Aluno alunoSelecionado = new Aluno(arrayAlunos.get(linha).getCodAluno(), arrayAlunos.get(linha).getRa(),
+        arrayAlunos.get(linha).getNome(), arrayAlunos.get(linha).getCurso(), arrayAlunos.get(linha).getPeriodo(),
+        arrayAlunos.get(linha).getEmail(), arrayAlunos.get(linha).getTelefone());
        
-        PAlterarEvento proximoPainel = new PAlterarEvento(framePai, eventoSelecionado);
-        framePai.mudarPainel(proximoPainel,"Alterar Evento");
+        PAlterarAluno proximoPainel = new PAlterarAluno(framePai, alunoSelecionado);
+        framePai.mudarPainel(proximoPainel,"Alterar Aluno");
     }//GEN-LAST:event_jBSelecionarAtividadeActionPerformed
 
-    private void jTableEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEventosMouseClicked
+    private void jTableAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAlunosMouseClicked
         JTable target = (JTable)evt.getSource();
         linha = target.getSelectedRow(); 
         boolean flag = false;
-        for (int i = 0; i < jTableEventos.getRowCount(); i++) 
+        for (int i = 0; i < jTableAlunos.getRowCount(); i++) 
             if (linha!=-1) 
                 flag=true;
         jBSelecionarAtividade.setEnabled(flag);
         jBExcluirAtividade.setEnabled(flag);
-    }//GEN-LAST:event_jTableEventosMouseClicked
+    }//GEN-LAST:event_jTableAlunosMouseClicked
 
     private void jBExcluirAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirAtividadeActionPerformed
         // TODO add your handling code here:
-        Evento eventoSelecionado = new Evento();
-        eventoSelecionado.setCodEvento(arrayEventos.get(linha).getCodEvento());     
+        Aluno alunoSelecionado = new Aluno();
+        alunoSelecionado.setCodAluno(arrayAlunos.get(linha).getCodAluno());     
         
-        String mensagem = "15;" + eventoSelecionado.getCodEvento() ;
+        String mensagem = "25;" + alunoSelecionado.getCodAluno() ;
         System.out.println(mensagem);
      
         try {
@@ -190,9 +190,9 @@ public final class PSelecionarEvento extends javax.swing.JPanel {
             Mensagem msg = new Mensagem(resultServidor);
 
             if(msg.avaliarMensagem()){
-                jLResultadoExclusao.setText("Evento Excluido");
+                jLResultadoExclusao.setText("Aluno Excluido");
             }else {
-                jLResultadoExclusao.setText("Evento Não Excluido");
+                jLResultadoExclusao.setText("Aluno Não Excluido");
             }
         } catch (IOException ex) {
             Logger.getLogger(PAlterarEvento.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,6 +206,6 @@ public final class PSelecionarEvento extends javax.swing.JPanel {
     private javax.swing.JButton jBSelecionarAtividade;
     private javax.swing.JLabel jLResultadoExclusao;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableEventos;
+    private javax.swing.JTable jTableAlunos;
     // End of variables declaration//GEN-END:variables
 }
