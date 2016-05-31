@@ -7,8 +7,10 @@ package IU;
 
 import Mensagem.Mensagem;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 /**
  *
@@ -26,10 +28,29 @@ public class PCadastrarAluno extends javax.swing.JPanel {
     public PCadastrarAluno(TPrincipal framepai){
         this.framepai = framepai;
         initComponents();
+        camposNecessarios();
     }
     
     public PCadastrarAluno() {
-        initComponents();
+        initComponents();        
+    }
+    
+    public final void camposNecessarios(){
+        jBCadastrarAluno.setEnabled(false);
+        ArrayList<JTextField> arrayCamposNecessarios = new ArrayList();
+        arrayCamposNecessarios.add(jTCurso);
+        arrayCamposNecessarios.add(jTEmail);
+        arrayCamposNecessarios.add(jTNome);
+        arrayCamposNecessarios.add(jTPeriodo);
+        arrayCamposNecessarios.add(jTRA);
+        arrayCamposNecessarios.add(jTTelefone);
+        CamposNecessarios documento = new CamposNecessarios(jBCadastrarAluno,arrayCamposNecessarios);
+        jTCurso.getDocument().addDocumentListener(documento);
+        jTEmail.getDocument().addDocumentListener(documento);
+        jTNome.getDocument().addDocumentListener(documento);
+        jTPeriodo.getDocument().addDocumentListener(documento);
+        jTRA.getDocument().addDocumentListener(documento);
+        jTTelefone.getDocument().addDocumentListener(documento);
     }
 
     /**
@@ -52,7 +73,7 @@ public class PCadastrarAluno extends javax.swing.JPanel {
         jTEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTTelefone = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jBCadastrarAluno = new javax.swing.JButton();
         jTCurso = new javax.swing.JTextField();
         jLMsg = new javax.swing.JLabel();
 
@@ -68,10 +89,10 @@ public class PCadastrarAluno extends javax.swing.JPanel {
 
         jLabel6.setText("Telefone:");
 
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBCadastrarAluno.setText("Cadastrar");
+        jBCadastrarAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBCadastrarAlunoActionPerformed(evt);
             }
         });
 
@@ -80,8 +101,6 @@ public class PCadastrarAluno extends javax.swing.JPanel {
                 jTCursoActionPerformed(evt);
             }
         });
-
-        jLMsg.setText("jLabel7");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,7 +121,7 @@ public class PCadastrarAluno extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
+                                .addComponent(jBCadastrarAluno))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -146,7 +165,7 @@ public class PCadastrarAluno extends javax.swing.JPanel {
                     .addComponent(jTTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jBCadastrarAluno)
                     .addComponent(jLMsg))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
@@ -156,7 +175,7 @@ public class PCadastrarAluno extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCursoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBCadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarAlunoActionPerformed
         // TODO add your handling code here:
         String mensagem = " ";
         mensagem = "21;" + jTRA.getText() + ";" + jTNome.getText() + ";" + jTCurso.getText() 
@@ -186,11 +205,11 @@ public class PCadastrarAluno extends javax.swing.JPanel {
         } catch(IOException ex){
             Logger.getLogger(PCadastrarAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBCadastrarAlunoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBCadastrarAluno;
     private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

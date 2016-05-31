@@ -7,8 +7,10 @@ package IU;
 
 import Mensagem.Mensagem;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 /**
  *
@@ -32,6 +34,7 @@ public class PAlterarAluno extends javax.swing.JPanel {
         this.framepai = framepai;
         this.alunoSelecionado = alunoSelecionado;
         initComponents();
+        camposNecessarios();
         
         jTRA.setText(alunoSelecionado.getRa());
         jTNome.setText(alunoSelecionado.getNome());
@@ -40,6 +43,24 @@ public class PAlterarAluno extends javax.swing.JPanel {
         jTEmail.setText(alunoSelecionado.getEmail());
         jTTelefone.setText(alunoSelecionado.getTelefone());
         
+    }
+    
+    public final void camposNecessarios(){
+        jBAlterarAluno.setEnabled(false);
+        ArrayList<JTextField> arrayCamposNecessarios = new ArrayList();
+        arrayCamposNecessarios.add(jTCurso);
+        arrayCamposNecessarios.add(jTEmail);
+        arrayCamposNecessarios.add(jTNome);
+        arrayCamposNecessarios.add(jTPeriodo);
+        arrayCamposNecessarios.add(jTRA);
+        arrayCamposNecessarios.add(jTTelefone);
+        CamposNecessarios documento = new CamposNecessarios(jBAlterarAluno,arrayCamposNecessarios);
+        jTCurso.getDocument().addDocumentListener(documento);
+        jTEmail.getDocument().addDocumentListener(documento);
+        jTNome.getDocument().addDocumentListener(documento);
+        jTPeriodo.getDocument().addDocumentListener(documento);
+        jTRA.getDocument().addDocumentListener(documento);
+        jTTelefone.getDocument().addDocumentListener(documento);
     }
     
     
@@ -64,7 +85,7 @@ public class PAlterarAluno extends javax.swing.JPanel {
         jTEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTTelefone = new javax.swing.JTextField();
-        jBAlterar = new javax.swing.JButton();
+        jBAlterarAluno = new javax.swing.JButton();
         jTCurso = new javax.swing.JTextField();
         jLMsg = new javax.swing.JLabel();
 
@@ -80,10 +101,10 @@ public class PAlterarAluno extends javax.swing.JPanel {
 
         jLabel6.setText("Telefone:");
 
-        jBAlterar.setText("Alterar");
-        jBAlterar.addActionListener(new java.awt.event.ActionListener() {
+        jBAlterarAluno.setText("Alterar");
+        jBAlterarAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAlterarActionPerformed(evt);
+                jBAlterarAlunoActionPerformed(evt);
             }
         });
 
@@ -92,8 +113,6 @@ public class PAlterarAluno extends javax.swing.JPanel {
                 jTCursoActionPerformed(evt);
             }
         });
-
-        jLMsg.setText("jLabel7");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -114,7 +133,7 @@ public class PAlterarAluno extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBAlterar))
+                                .addComponent(jBAlterarAluno))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -158,7 +177,7 @@ public class PAlterarAluno extends javax.swing.JPanel {
                     .addComponent(jTTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAlterar)
+                    .addComponent(jBAlterarAluno)
                     .addComponent(jLMsg))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
@@ -168,7 +187,7 @@ public class PAlterarAluno extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCursoActionPerformed
 
-    private void jBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarActionPerformed
+    private void jBAlterarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarAlunoActionPerformed
         // TODO add your handling code here:
         String mensagem = " ";
         mensagem = "23;" + alunoSelecionado.getCodAluno() + ";" + jTRA.getText() + ";" + jTNome.getText() + ";" + jTCurso.getText() 
@@ -198,11 +217,11 @@ public class PAlterarAluno extends javax.swing.JPanel {
         } catch(IOException ex){
             Logger.getLogger(PAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jBAlterarActionPerformed
+    }//GEN-LAST:event_jBAlterarAlunoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAlterar;
+    private javax.swing.JButton jBAlterarAluno;
     private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
