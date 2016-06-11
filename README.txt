@@ -1,10 +1,17 @@
+MÓDULO CONTROLE
+
 Primeiramente devemos executar a classe servidor que está no pacote 
 controle que está no projeto servidor.
+
 Na sequencia executa-se a classe login que está no pacote IU no projeto
 Client.
+
 Deve ser fornecido o IP 127.0.0.1 e Porta 4321
 usuario = usuario
 senha = senha
+
+MÓDULO EVENTO
+
 Para se cadastrar um evento, deve-se entrar no menu manter evento e selecionar
 a opção cadastrar.
 Apos inserir as informações do envento, clique no botão "Salvar".
@@ -13,4 +20,16 @@ Manter evento. Logo aparecerá uma tela contento os eventos cadastrados, após
 a seleção do evento desejado, pode-se excluir o enveto clicando no botão
 "Excluir" ou clicar no botão "Selecionar" para realizar alterações nos dados
 do evento.
+Após alteradas as infomações, basta clicar no botão "Alterar".
+
+MÓDULO ALUNO
+
+Primeiramente deve-se ir na opção do menu MANTER ALUNO e selecionar a opção cadastrar,
+Apos inserir as informações do aluno, clique no botão "Cadastrar". 
+
+Para alterar/excluir um aluno, basta selecionar a opção Alterar/Excluir no
+Manter aluno. Logo aparecerá uma tela contento os alunos cadastrados, após
+a seleção do aluno desejado, pode-se excluir o aluno clicando no botão
+"Excluir" ou clicar no botão "Selecionar" para realizar alterações nos dados
+do aluno.
 Após alteradas as infomações, basta clicar no botão "Alterar".

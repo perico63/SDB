@@ -23,7 +23,7 @@ public class TPrincipal extends javax.swing.JFrame {
     private Socket clientSocket = null;
     private DataOutputStream out = null;
     private DataInputStream in = null;
-    
+    private boolean telaUtilizada;
     /**
      * Creates new form TPrincipal
      */
@@ -54,6 +54,9 @@ public class TPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -61,6 +64,14 @@ public class TPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -105,6 +116,23 @@ public class TPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu5.setText("Presença");
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem4.setText("Lançar Presença");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu5);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -120,9 +148,9 @@ public class TPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-
+        telaUtilizada = false;
        try {
-            PSelecionarEvento novoselecionar = new PSelecionarEvento(this);
+            PSelecionarEvento novoselecionar = new PSelecionarEvento(this, false);
             mudarPainel(novoselecionar, "Alterar/Excluir Evento");
         } catch (IOException ex) {
             Logger.getLogger(TPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,6 +172,24 @@ public class TPrincipal extends javax.swing.JFrame {
             Logger.getLogger(TPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenu5ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        //lancar presenca
+        telaUtilizada = true;
+        try{ 
+            PSelecionarEvento novoselecionar = new PSelecionarEvento(this, true);
+            mudarPainel(novoselecionar, "Lançar Presença");
+        } catch (IOException ex) {
+            Logger.getLogger(TPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,10 +255,15 @@ public class TPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
     

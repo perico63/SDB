@@ -199,6 +199,13 @@ public final class PSelecionarAluno extends javax.swing.JPanel {
         }
         this.jBExcluirAtividade.setEnabled(false);
         this.jBSelecionarAtividade.setEnabled(false);
+        PSelecionarAluno painel = null;
+        try {
+            painel = new PSelecionarAluno(framePai);
+        } catch (IOException ex) {
+            Logger.getLogger(PSelecionarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        framePai.mudarPainel(painel, "Selecionar Aluno");
     }//GEN-LAST:event_jBExcluirAtividadeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

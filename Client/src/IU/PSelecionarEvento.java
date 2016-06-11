@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,17 +18,25 @@ public final class PSelecionarEvento extends javax.swing.JPanel {
     private TPrincipal framePai;
     private int linha;    
     private ArrayList<Evento> arrayEventos;
+    private boolean tela;
     
     public PSelecionarEvento() {
         initComponents();
     }
-    
-    public PSelecionarEvento(TPrincipal framePai) throws IOException {
+    //tela  0 - alterar evento
+    //tela 1 - registrar presenca
+    public PSelecionarEvento(TPrincipal framePai, boolean tela) throws IOException {
        
         initComponents();
+        
+        if(tela){
+            this.jBExcluirAtividade.setVisible(false);
+        }
+        
         adicionaListner();        
         this.framePai = framePai;           
-        
+        this.tela = tela;
+                
         String mensagem = "17";
         framePai.getOut().writeUTF(mensagem);           
         String resultServidor = framePai.getIn().readUTF();
@@ -155,13 +164,17 @@ public final class PSelecionarEvento extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBSelecionarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSelecionarAtividadeActionPerformed
-       
-        Evento eventoSelecionado = new Evento(arrayEventos.get(linha).getCodEvento(), arrayEventos.get(linha).getNome(),
-        arrayEventos.get(linha).getData(), arrayEventos.get(linha).getHoraInicial(), arrayEventos.get(linha).getHoraFinal(),
-        arrayEventos.get(linha).getTipoEvento());
-       
-        PAlterarEvento proximoPainel = new PAlterarEvento(framePai, eventoSelecionado);
-        framePai.mudarPainel(proximoPainel,"Alterar Evento");
+        
+        if(!tela){
+            Evento eventoSelecionado = new Evento(arrayEventos.get(linha).getCodEvento(), arrayEventos.get(linha).getNome(),
+            arrayEventos.get(linha).getData(), arrayEventos.get(linha).getHoraInicial(), arrayEventos.get(linha).getHoraFinal(),
+            arrayEventos.get(linha).getTipoEvento());
+
+            PAlterarEvento proximoPainel = new PAlterarEvento(framePai, eventoSelecionado);
+            framePai.mudarPainel(proximoPainel,"Alterar Evento");
+        } else {
+            //lancar presenca
+        }
     }//GEN-LAST:event_jBSelecionarAtividadeActionPerformed
 
     private void jTableEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEventosMouseClicked
@@ -199,6 +212,13 @@ public final class PSelecionarEvento extends javax.swing.JPanel {
         }
         this.jBExcluirAtividade.setEnabled(false);
         this.jBSelecionarAtividade.setEnabled(false);
+        PSelecionarEvento painel = null;
+        try {
+            painel = new PSelecionarEvento(framePai, this.tela);
+        } catch (IOException ex) {
+            Logger.getLogger(PSelecionarEvento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        framePai.mudarPainel(painel, "Selecionar Evento");
     }//GEN-LAST:event_jBExcluirAtividadeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
