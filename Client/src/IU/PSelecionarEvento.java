@@ -173,7 +173,19 @@ public final class PSelecionarEvento extends javax.swing.JPanel {
             PAlterarEvento proximoPainel = new PAlterarEvento(framePai, eventoSelecionado);
             framePai.mudarPainel(proximoPainel,"Alterar Evento");
         } else {
-            //lancar presenca
+            //PRegistrarPresenca
+            Evento eventoSelecionado = new Evento(arrayEventos.get(linha).getCodEvento(), arrayEventos.get(linha).getNome(),
+            arrayEventos.get(linha).getData(), arrayEventos.get(linha).getHoraInicial(), arrayEventos.get(linha).getHoraFinal(),
+            arrayEventos.get(linha).getTipoEvento());
+
+            PRegistrarPresenca proximoPainel = null;
+            try {
+                proximoPainel = new PRegistrarPresenca(framePai, eventoSelecionado);
+            } catch (IOException ex) {
+                Logger.getLogger(PSelecionarEvento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            framePai.mudarPainel(proximoPainel,"Lançar Presença");
+            
         }
     }//GEN-LAST:event_jBSelecionarAtividadeActionPerformed
 

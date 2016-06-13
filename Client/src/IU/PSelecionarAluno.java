@@ -29,7 +29,7 @@ public final class PSelecionarAluno extends javax.swing.JPanel {
         this.framePai = framePai;           
         
         String mensagem = "27";
-        framePai.getOut().writeUTF(mensagem);           
+        framePai.getOut().writeUTF(mensagem);        
         String resultServidor = framePai.getIn().readUTF();
         System.out.println(resultServidor);
         resultServidor.trim();
