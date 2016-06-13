@@ -15,10 +15,13 @@ public class BD {
         
     ArrayList<Evento> eventos = null;
     ArrayList<Aluno> alunos = null;
-    
+    ArrayList<EventoAluno> eventoAluno = null;
+    ArrayList<Aluno> alunosMatriculados = null;
+            
     public BD(){
         this.eventos = new ArrayList<>();
         this.alunos = new ArrayList<>();
+        this.eventoAluno = new ArrayList<>();
     }
     
     public void cadastrarEvento(Evento evento){
@@ -57,6 +60,21 @@ public class BD {
     
     public ArrayList<Aluno> getAlunos(){
         return alunos;
+    }
+    
+    public ArrayList<Aluno> getAlunosMtriculados(String codCurso){
+        for (int i = 0; i < eventoAluno.size() ; i++) {
+            if(eventoAluno.get(i).getCodEvento().equals(codCurso)){
+                System.out.println(alunosMatriculados.add(alunos.get(Integer.parseInt(eventoAluno.get(i).getCodAluno()))));
+                alunosMatriculados.add(alunos.get(Integer.parseInt(eventoAluno.get(i).getCodAluno())));
+            }
+        }
+        return alunosMatriculados;
+    }
+    
+    public void matriculaAluno(EventoAluno eventoAluno){
+        System.out.println("Aluno matriculado com sucesso");
+        this.eventoAluno.add(eventoAluno);
     }
     
 }

@@ -81,6 +81,15 @@ public class Mensagem {
                 break;
             case "27": 
                 return cmd.getAllAlunos();
+            case "31":
+                if(cmd.matricularAluno(m[1],m[2])){
+                    respostaServidor = "32;1";
+                } else {
+                    respostaServidor = "32;0";
+                }
+                break;
+            case "33":
+                return cmd.getAlunosMatriculados(m[1]);
             default:
                respostaServidor = "00";        
         }      

@@ -8,6 +8,8 @@ package Comando;
 import Controle.Aluno;
 import Controle.BD;
 import Controle.Evento;
+import Controle.EventoAluno;
+import java.util.ArrayList;
 
 /**
  *
@@ -83,6 +85,13 @@ public class Comando {
         return true;
     }
     
+    public boolean matricularAluno(String codEvento, String codAluno){
+        EventoAluno novoEventoAluno = new EventoAluno(codEvento, codAluno);
+        System.out.println("Obj EventoAluno Criado");
+        banco.matriculaAluno(novoEventoAluno);
+        return true;
+    }
+    
     public String getAllAlunos(){
         String todosAlunos = "28|";
         for (int i = 0; i < banco.getAlunos().size(); i++) {            
@@ -95,5 +104,20 @@ public class Comando {
         }
         System.out.println(todosAlunos);
         return todosAlunos;
+    }
+    
+    public String getAlunosMatriculados(String codEvento){
+        String alunosMatriculados = "34|";
+        ArrayList<Aluno> arrayAlunosMatriculados = banco.getAlunosMtriculados(codEvento);
+        for (int i = 0; i < arrayAlunosMatriculados.size(); i++) {            
+            alunosMatriculados = alunosMatriculados.concat(i + ";" + arrayAlunosMatriculados.get(i).getRa()+ ";" + 
+                    arrayAlunosMatriculados.get(i).getNome() + ";" + arrayAlunosMatriculados.get(i).getCurso() + ";" 
+                    + arrayAlunosMatriculados.get(i).getPeriodo() + ";" + arrayAlunosMatriculados.get(i).getEmail() 
+                    + ";" + arrayAlunosMatriculados.get(i).getTelefone());            
+            if(i != arrayAlunosMatriculados.size()-1)
+                alunosMatriculados = alunosMatriculados.concat("|");          
+        }
+        
+        return alunosMatriculados;
     }
 }

@@ -26,6 +26,7 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
     private TPrincipal framePai= null;
     private int linha;    
     private ArrayList<Aluno> arrayAlunos;
+    private ArrayList<Aluno> arrayAlunosMatriculados;
     /**
      * Creates new form JAlterarAtividade
      */
@@ -83,7 +84,16 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
         }
     }
 
+    public void popularTabelaAlunosMatriculados(){
+       for (int i = 0; i < arrayAlunosMatriculados.size() ; i++) {
+            DefaultTableModel model = (DefaultTableModel)jTableAlunosMatriculados.getModel();
+            model.insertRow(model.getRowCount(), new Object[]{arrayAlunosMatriculados.get(i).getCodAluno(),arrayAlunosMatriculados.get(i).getRa(), arrayAlunosMatriculados.get(i).getNome(),
+                arrayAlunosMatriculados.get(i).getCurso(), arrayAlunosMatriculados.get(i).getPeriodo(), arrayAlunosMatriculados.get(i).getEmail(), arrayAlunosMatriculados.get(i).getTelefone()}); 
+        }
+    }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,6 +109,11 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
         jTableAlunos = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jBMatricularPresenca = new javax.swing.JButton();
+        jLMsg = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableAlunosMatriculados = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         jLabel3.setText("Matricula e presença para evento: ");
 
@@ -125,7 +140,7 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTableAlunos);
 
-        jLabel4.setText("Selecionar aluno");
+        jLabel4.setText("Lista de todos os alunos");
 
         jBMatricularPresenca.setText("Matricular aluno selecionado");
         jBMatricularPresenca.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +149,57 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
             }
         });
 
+        jTableAlunosMatriculados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cod", "RA", "Nome", "Curso", "Periodo", "E-mail", "Telefone"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableAlunosMatriculados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAlunosMatriculadosMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTableAlunosMatriculados);
+
+        jLabel1.setText("Alunos matriculados no evento:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(153, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(111, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,7 +207,12 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLMsg)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBMatricularPresenca))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -149,10 +220,7 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLNomeEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBMatricularPresenca)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,8 +235,12 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBMatricularPresenca)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBMatricularPresenca)
+                    .addComponent(jLMsg))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -183,16 +255,76 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
     }//GEN-LAST:event_jTableAlunosMouseClicked
 
     private void jBMatricularPresencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMatricularPresencaActionPerformed
-        
+        String mensagem = " ";
+        mensagem = "31;" + arrayAlunos.get(linha).getCodAluno() + ";" + eventoSelecionado.getCodEvento();
+        System.out.println(mensagem);
+
+        try {
+            framePai.getOut().writeUTF(mensagem);
+            resultServidor = framePai.getIn().readUTF();
+            System.out.println(resultServidor);
+            Mensagem msg = new Mensagem(resultServidor);
+
+            if (msg.avaliarMensagem()) {
+                jLMsg.setText("Aluno Cadastrado!");
+            } else {
+                jLMsg.setText("Aluno não Cadastrado!");
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(PCadastrarAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //popular table de alunos matriculados
+        mensagem = "33;"+eventoSelecionado.getCodEvento();
+        try {
+            framePai.getOut().writeUTF(mensagem);
+            String resultServidor = null;
+            resultServidor = framePai.getIn().readUTF();
+            System.out.println(resultServidor);
+            resultServidor.trim();
+            String conteudo[] = resultServidor.split("\\|");
+
+            //popula array
+            System.out.println("Conteudo retorno 33" + conteudo[0]);
+            Aluno evt2;
+            arrayAlunosMatriculados = new ArrayList<>();
+
+            for (int i = 1; i < conteudo.length; i++) {
+                String descAluno[] = conteudo[i].split(";");
+                evt2 = new Aluno();
+                evt2.setCodAluno(descAluno[0]);
+                evt2.setRa(descAluno[1]);
+                evt2.setNome(descAluno[2]);
+                evt2.setCurso(descAluno[3]);
+                evt2.setPeriodo((descAluno[4]));
+                evt2.setEmail(descAluno[5]);
+                evt2.setTelefone(descAluno[6]);
+                arrayAlunosMatriculados.add(evt2);
+            }
+            popularTabelaAlunosMatriculados();
+        } catch (IOException ex) {
+            Logger.getLogger(PRegistrarPresenca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jBMatricularPresencaActionPerformed
+
+    private void jTableAlunosMatriculadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAlunosMatriculadosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableAlunosMatriculadosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBMatricularPresenca;
+    private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLNomeEvento;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableAlunos;
+    private javax.swing.JTable jTableAlunosMatriculados;
     // End of variables declaration//GEN-END:variables
 }
