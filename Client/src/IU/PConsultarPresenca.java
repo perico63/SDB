@@ -197,7 +197,7 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
         
         //popular table de alunos matriculados
         arrayAlunosMatriculados = new ArrayList<>();        
-        System.out.println("EVENTO SELECIONADO " + arrayEventos.get(linha).getCodEvento());                
+        System.out.println(arrayEventos.get(linha).getCodEvento());                
         String mensagem = "33;"+arrayEventos.get(linha).getCodEvento();
         try {
             framePai.getOut().writeUTF(mensagem);
@@ -225,7 +225,7 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
                 evt2.setTelefone(descAluno[6]);
                 arrayAlunosMatriculados.add(evt2);
             }
-            System.out.println("TAMANHO DOS ALUNOS MATRICULADOS " + arrayAlunosMatriculados.size());
+            System.out.println(arrayAlunosMatriculados.size());
             popularTabelaAlunosMatriculados();
         } catch (IOException ex) {
             Logger.getLogger(PRegistrarPresenca.class.getName()).log(Level.SEVERE, null, ex);

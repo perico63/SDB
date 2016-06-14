@@ -216,6 +216,7 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
 
     private void jBMatricularPresencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMatricularPresencaActionPerformed
         String mensagem = " ";
+        linha = jTableAlunos.getSelectedRow();
         mensagem = "31;" + arrayAlunos.get(linha).getCodAluno() + ";" + eventoSelecionado.getCodEvento();
         System.out.println(mensagem);
 
@@ -237,22 +238,14 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
     }//GEN-LAST:event_jBMatricularPresencaActionPerformed
 
     private void jBConsultarNomeRAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarNomeRAActionPerformed
-        // TODO add your handling code here:
-        /*TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(jTableAlunos.getModel());
-        
-          if (nomeRa.trim().length() == 0) {
-            rowSorter.setRowFilter(null);
-        } else {
-               rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + nomeRa));
-         }*/
         String nomeRa = jTNome_RA.getText();
-        for(int i = 0; i < jTableAlunos.getRowCount(); i++){//For each row
-            for(int j = 0; j < jTableAlunos.getColumnCount(); j++){//For each column in that row
-                if(jTableAlunos.getModel().getValueAt(i, j).equals(nomeRa)){//Search the model                    
+        for(int i = 0; i < jTableAlunos.getRowCount(); i++){
+            for(int j = 0; j < jTableAlunos.getColumnCount(); j++){
+                if(jTableAlunos.getModel().getValueAt(i, j).equals(nomeRa)){                    
                   jTableAlunos.setRowSelectionInterval(i, i);
             }
-        }//For loop inner
-    }//For loop outer
+        }
+    }
         
     }//GEN-LAST:event_jBConsultarNomeRAActionPerformed
 
