@@ -85,9 +85,15 @@ public class Comando {
         return true;
     }
     
-    public boolean matricularAluno(String codEvento, String codAluno){
+    public boolean matricularAluno(String codAluno, String codEvento){        
+        for (int i = 0; i < banco.getEventoAluno().size(); ++i){
+            if(banco.getEventoAluno().get(i).getCodEvento().equals(codEvento) && 
+                    banco.getEventoAluno().get(i).getCodAluno().equals(codAluno)){
+                return false;
+            }
+        }
         EventoAluno novoEventoAluno = new EventoAluno(codEvento, codAluno);
-        System.out.println("Obj EventoAluno Criado");
+        System.out.println("Obj MATRICULA EventoAluno Criado");
         banco.matriculaAluno(novoEventoAluno);
         return true;
     }
@@ -109,6 +115,7 @@ public class Comando {
     public String getAlunosMatriculados(String codEvento){
         String alunosMatriculados = "34|";
         ArrayList<Aluno> arrayAlunosMatriculados = banco.getAlunosMtriculados(codEvento);
+        System.out.println("QUANTIDADE DE ALUNOS MATRICULADOS " + arrayAlunosMatriculados.size());                
         for (int i = 0; i < arrayAlunosMatriculados.size(); i++) {            
             alunosMatriculados = alunosMatriculados.concat(i + ";" + arrayAlunosMatriculados.get(i).getRa()+ ";" + 
                     arrayAlunosMatriculados.get(i).getNome() + ";" + arrayAlunosMatriculados.get(i).getCurso() + ";" 
@@ -116,8 +123,9 @@ public class Comando {
                     + ";" + arrayAlunosMatriculados.get(i).getTelefone());            
             if(i != arrayAlunosMatriculados.size()-1)
                 alunosMatriculados = alunosMatriculados.concat("|");          
+            System.out.println("valor do I " + i);
         }
-        
+        System.out.println("STRING " + alunosMatriculados);
         return alunosMatriculados;
     }
 }

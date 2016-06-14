@@ -17,12 +17,11 @@ import java.net.Socket;
  * @author diego
  */
 public class Servidor extends Thread {
-    BD banco = null;
+    private static final BD banco = new BD();
     private Socket clientSocket;
     
     public Servidor(Socket clientSocket){
         this.clientSocket = clientSocket;
-        banco = new BD();
         start();
     }
     

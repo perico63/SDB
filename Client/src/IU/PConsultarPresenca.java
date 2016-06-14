@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -27,12 +28,10 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
     public PConsultarPresenca(TPrincipal framePai) throws IOException {
        
         initComponents();
+        adicionaListner();
         
-        arrayAlunosMatriculados = new ArrayList<>();
-        
-        adicionaListner();        
         this.framePai = framePai;
-                
+        
         String mensagem = "17";
         framePai.getOut().writeUTF(mensagem);           
         String resultServidor = framePai.getIn().readUTF();
@@ -79,15 +78,10 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
     }
     
     public void popularTabelaAlunosMatriculados(){       
-        DefaultTableModel modelAlunosMatriculados = (DefaultTableModel)jTableAlunosMatriculados.getModel(); 
-       
-        if(modelAlunosMatriculados.getRowCount() > 0){
-            for(int i = 0 ; i < modelAlunosMatriculados.getRowCount(); i++){
-                modelAlunosMatriculados.removeRow(i);
-                modelAlunosMatriculados.fireTableDataChanged();
-            }
-        }
-        
+       jTableAlunosMatriculados.removeAll();
+       DefaultTableModel modelAlunosMatriculados = (DefaultTableModel)jTableAlunosMatriculados.getModel(); 
+       modelAlunosMatriculados.setRowCount(0);
+                
         for (int i = 0; i < arrayAlunosMatriculados.size() ; i++) {            
             modelAlunosMatriculados.insertRow(modelAlunosMatriculados.getRowCount(), new Object[]{arrayAlunosMatriculados.get(i).getCodAluno(),arrayAlunosMatriculados.get(i).getRa(), arrayAlunosMatriculados.get(i).getNome(),
                 arrayAlunosMatriculados.get(i).getCurso(), arrayAlunosMatriculados.get(i).getPeriodo(), arrayAlunosMatriculados.get(i).getEmail(), arrayAlunosMatriculados.get(i).getTelefone()}); 
@@ -176,11 +170,11 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBSelecionarAtividade)
                         .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBSelecionarAtividade)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +183,7 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBSelecionarAtividade)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(152, 152, 152)
@@ -202,7 +196,8 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
     private void jBSelecionarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSelecionarAtividadeActionPerformed
         
         //popular table de alunos matriculados
-        System.out.println( arrayEventos.get(linha).getCodEvento());                
+        arrayAlunosMatriculados = new ArrayList<>();        
+        System.out.println("EVENTO SELECIONADO " + arrayEventos.get(linha).getCodEvento());                
         String mensagem = "33;"+arrayEventos.get(linha).getCodEvento();
         try {
             framePai.getOut().writeUTF(mensagem);
@@ -214,6 +209,7 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
 
             //popula array
             System.out.println("Conteudo retorno 33" + conteudo[0]);
+            System.out.println(Arrays.deepToString(conteudo));
             Aluno evt2;
             
            
@@ -229,7 +225,7 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
                 evt2.setTelefone(descAluno[6]);
                 arrayAlunosMatriculados.add(evt2);
             }
-            
+            System.out.println("TAMANHO DOS ALUNOS MATRICULADOS " + arrayAlunosMatriculados.size());
             popularTabelaAlunosMatriculados();
         } catch (IOException ex) {
             Logger.getLogger(PRegistrarPresenca.class.getName()).log(Level.SEVERE, null, ex);

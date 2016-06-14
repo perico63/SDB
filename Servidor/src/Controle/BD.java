@@ -67,7 +67,7 @@ public class BD {
         alunosMatriculados.clear();
         for (int i = 0; i < eventoAluno.size(); i++) {
             if(eventoAluno.get(i).getCodEvento().equals(codEvento)){
-                System.out.println(alunos.get(Integer.parseInt(eventoAluno.get(i).getCodAluno())).getNome());
+                System.out.println("cod do aluno " + alunos.get(Integer.parseInt(eventoAluno.get(i).getCodAluno())).getNome());
                 alunosMatriculados.add(alunos.get(Integer.parseInt(eventoAluno.get(i).getCodAluno())));
             }
         }
@@ -78,5 +78,13 @@ public class BD {
         System.out.println("Aluno matriculado com sucesso");
         this.eventoAluno.add(eventoAluno);
     }
-    
+
+    public ArrayList<EventoAluno> getEventoAluno() {
+        return eventoAluno;
+    }
+
+    public void setEventoAluno(ArrayList<EventoAluno> eventoAluno) {
+        this.eventoAluno = eventoAluno;
+    }
+        
 }
