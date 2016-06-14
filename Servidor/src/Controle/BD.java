@@ -21,6 +21,7 @@ public class BD {
     public BD(){
         this.eventos = new ArrayList<>();
         this.alunos = new ArrayList<>();
+        this.alunosMatriculados = new ArrayList<>();
         this.eventoAluno = new ArrayList<>();
     }
     
@@ -62,10 +63,11 @@ public class BD {
         return alunos;
     }
     
-    public ArrayList<Aluno> getAlunosMtriculados(String codCurso){
-        for (int i = 0; i < eventoAluno.size() ; i++) {
-            if(eventoAluno.get(i).getCodEvento().equals(codCurso)){
-                System.out.println(alunosMatriculados.add(alunos.get(Integer.parseInt(eventoAluno.get(i).getCodAluno()))));
+    public ArrayList<Aluno> getAlunosMtriculados(String codEvento){
+        alunosMatriculados.clear();
+        for (int i = 0; i < eventoAluno.size(); i++) {
+            if(eventoAluno.get(i).getCodEvento().equals(codEvento)){
+                System.out.println(alunos.get(Integer.parseInt(eventoAluno.get(i).getCodAluno())).getNome());
                 alunosMatriculados.add(alunos.get(Integer.parseInt(eventoAluno.get(i).getCodAluno())));
             }
         }
