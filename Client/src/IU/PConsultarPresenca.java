@@ -19,7 +19,7 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
     private int linha;    
     private ArrayList<Evento> arrayEventos;
     private ArrayList<Aluno> arrayAlunosMatriculados;
-    
+        
     public PConsultarPresenca() {
         initComponents();
     }
@@ -27,6 +27,8 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
     public PConsultarPresenca(TPrincipal framePai) throws IOException {
        
         initComponents();
+        
+        arrayAlunosMatriculados = new ArrayList<>();
         
         adicionaListner();        
         this.framePai = framePai;
@@ -76,12 +78,21 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
         }
     }
     
-    public void popularTabelaAlunosMatriculados(){
-       for (int i = 0; i < arrayAlunosMatriculados.size() ; i++) {
-            DefaultTableModel model = (DefaultTableModel)jTableAlunosMatriculados.getModel();
-            model.insertRow(model.getRowCount(), new Object[]{arrayAlunosMatriculados.get(i).getCodAluno(),arrayAlunosMatriculados.get(i).getRa(), arrayAlunosMatriculados.get(i).getNome(),
+    public void popularTabelaAlunosMatriculados(){       
+        DefaultTableModel modelAlunosMatriculados = (DefaultTableModel)jTableAlunosMatriculados.getModel(); 
+       
+        if(modelAlunosMatriculados.getRowCount() > 0){
+            for(int i = 0 ; i < modelAlunosMatriculados.getRowCount(); i++){
+                modelAlunosMatriculados.removeRow(i);
+                modelAlunosMatriculados.fireTableDataChanged();
+            }
+        }
+        
+        for (int i = 0; i < arrayAlunosMatriculados.size() ; i++) {            
+            modelAlunosMatriculados.insertRow(modelAlunosMatriculados.getRowCount(), new Object[]{arrayAlunosMatriculados.get(i).getCodAluno(),arrayAlunosMatriculados.get(i).getRa(), arrayAlunosMatriculados.get(i).getNome(),
                 arrayAlunosMatriculados.get(i).getCurso(), arrayAlunosMatriculados.get(i).getPeriodo(), arrayAlunosMatriculados.get(i).getEmail(), arrayAlunosMatriculados.get(i).getTelefone()}); 
         }
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -191,6 +202,7 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
     private void jBSelecionarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSelecionarAtividadeActionPerformed
         
         //popular table de alunos matriculados
+        System.out.println( arrayEventos.get(linha).getCodEvento());                
         String mensagem = "33;"+arrayEventos.get(linha).getCodEvento();
         try {
             framePai.getOut().writeUTF(mensagem);
@@ -203,8 +215,8 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
             //popula array
             System.out.println("Conteudo retorno 33" + conteudo[0]);
             Aluno evt2;
-            ArrayList<Aluno> arrayAlunosMatriculados = new ArrayList<>();
-
+            
+           
             for (int i = 1; i < conteudo.length; i++) {
                 String descAluno[] = conteudo[i].split(";");
                 evt2 = new Aluno();
@@ -217,6 +229,7 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
                 evt2.setTelefone(descAluno[6]);
                 arrayAlunosMatriculados.add(evt2);
             }
+            
             popularTabelaAlunosMatriculados();
         } catch (IOException ex) {
             Logger.getLogger(PRegistrarPresenca.class.getName()).log(Level.SEVERE, null, ex);
