@@ -14,17 +14,17 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLSocket;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  *
  * @author diego
  */
 public class Login extends javax.swing.JFrame {
-
     /**
      * Creates new form Login
-     */
-    
+     */   
     
     public Login() {
         initComponents();
@@ -189,14 +189,14 @@ public class Login extends javax.swing.JFrame {
             System.out.println(resultServidor);
             Mensagem msg = new Mensagem(resultServidor);
             if(msg.avaliarMensagem()) {
+                JOptionPane.showMessageDialog(null, "Usuário Logado!");
                 TPrincipal telaprincial = new TPrincipal(clientSocket, out, in);
                 telaprincial.setVisible(true);
                 this.setVisible(false);
                                
             } else{
-                jLMensagem.setText("Usuario/Senha Inválidos");
-            }
-            
+                JOptionPane.showMessageDialog(null, "Usuario/Senha Inválidos", "Erro", ERROR_MESSAGE);            
+            }            
             //out.close();
             //in.close();
             //clientSocket.close();

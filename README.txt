@@ -33,3 +33,9 @@ a seleção do aluno desejado, pode-se excluir o aluno clicando no botão
 "Excluir" ou clicar no botão "Selecionar" para realizar alterações nos dados
 do aluno.
 Após alteradas as infomações, basta clicar no botão "Alterar".
+
+MÓDULO PRESENÇA
+
+Primeiramente deve-se ir na opção do menu Presença e selecionar a opção LANÇAR PRESENÇA, então, deve-se selecionar o evento que deseja-se lançar presença, em seguida será listado todos os alunos cadastrados, a partir disso, basta selecionar o aluno e matricula-lo na turma. Existe a opção de pesquisa do aluno por nome e RA.
+
+Para consultar os alunos matriculados em um evento, basta ir na opção PRESENÇA do menu, em seguida vá em CONSULTAR PRESENÇA, para finalizar selecione o evento e os alunos nele matriculados serão exibidos.

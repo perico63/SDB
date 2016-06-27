@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controle;
+package Servidor;
 
 import java.util.ArrayList;
 
@@ -26,17 +26,17 @@ public class BD {
     }
     
     public void cadastrarEvento(Evento evento){
-        System.out.println("Vento Cadastrado com Sucesso");
+        System.out.println("Evento Cadastrado com Sucesso!");
         this.eventos.add(evento);        
     }
     
     public void alterarEvento(Evento evento, int codigoEvento){
-        System.out.println("Evento alterado com Sucesso");
+        System.out.println("Evento Alterado com Sucesso!");
         this.eventos.set(codigoEvento, evento);
     } 
     
     public void excluirEvento(int codigoEvento){
-        System.out.println("Evento Excluído com Sucesso");
+        System.out.println("Evento Excluído com Sucesso!");
         this.eventos.remove(codigoEvento);
     }
     
@@ -45,17 +45,17 @@ public class BD {
     }
     
     public void cadastrarAluno(Aluno aluno){
-        System.out.println("Aluno Cadastrado com Sucesso");
+        System.out.println("Aluno Cadastrado com Sucesso!");
         this.alunos.add(aluno);
     } 
     
     public void alterarAluno(Aluno aluno, int codigoAluno){
-        System.out.println("Aluno Alterado com Sucesso");
+        System.out.println("Aluno Alterado com Sucesso!");
         this.alunos.set(codigoAluno, aluno);
     }  
     
     public void excluirAluno(int codigoAluno){
-        System.out.println("Aluno Excluído com Sucesso");
+        System.out.println("Aluno Excluído com Sucesso!");
         this.alunos.remove(codigoAluno);
     }
     
@@ -67,7 +67,6 @@ public class BD {
         alunosMatriculados.clear();
         for (int i = 0; i < eventoAluno.size(); i++) {
             if(eventoAluno.get(i).getCodEvento().equals(codEvento)){
-                System.out.println("cod do aluno " + alunos.get(Integer.parseInt(eventoAluno.get(i).getCodAluno())).getNome());
                 alunosMatriculados.add(alunos.get(Integer.parseInt(eventoAluno.get(i).getCodAluno())));
             }
         }
@@ -75,7 +74,7 @@ public class BD {
     }
     
     public void matriculaAluno(EventoAluno eventoAluno){
-        System.out.println("Aluno matriculado com sucesso");
+        System.out.println("Aluno Matriculado Com Sucesso!");
         this.eventoAluno.add(eventoAluno);
     }
 

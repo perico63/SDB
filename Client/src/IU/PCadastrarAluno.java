@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JTextField;
 
 /**
@@ -75,7 +77,6 @@ public class PCadastrarAluno extends javax.swing.JPanel {
         jTTelefone = new javax.swing.JTextField();
         jBCadastrarAluno = new javax.swing.JButton();
         jTCurso = new javax.swing.JTextField();
-        jLMsg = new javax.swing.JLabel();
 
         jLabel1.setText("RA: ");
 
@@ -117,11 +118,9 @@ public class PCadastrarAluno extends javax.swing.JPanel {
                             .addComponent(jLabel6))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBCadastrarAluno))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBCadastrarAluno)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -164,9 +163,7 @@ public class PCadastrarAluno extends javax.swing.JPanel {
                     .addComponent(jLabel6)
                     .addComponent(jTTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBCadastrarAluno)
-                    .addComponent(jLMsg))
+                .addComponent(jBCadastrarAluno)
                 .addContainerGap(49, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -177,8 +174,7 @@ public class PCadastrarAluno extends javax.swing.JPanel {
 
     private void jBCadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastrarAlunoActionPerformed
         // TODO add your handling code here:
-        String mensagem = " ";
-        mensagem = "21;" + jTRA.getText() + ";" + jTNome.getText() + ";" + jTCurso.getText() 
+        String mensagem = "21;" + jTRA.getText() + ";" + jTNome.getText() + ";" + jTCurso.getText() 
                 + ";" + jTPeriodo.getText() + ";" + jTEmail.getText() + ";" + jTTelefone.getText();
         System.out.println(mensagem);
         
@@ -196,12 +192,10 @@ public class PCadastrarAluno extends javax.swing.JPanel {
             jTTelefone.setText("");
             
             if(msg.avaliarMensagem()){
-                jLMsg.setText("Aluno Cadastrado!");
+                JOptionPane.showMessageDialog(null, "Aluno Cadastrado!");
             } else {
-                jLMsg.setText("Aluno não Cadastrado!");
+                JOptionPane.showMessageDialog(null, "Aluno não Cadastrado!", "Erro", ERROR_MESSAGE);
             }
-            
-            
         } catch(IOException ex){
             Logger.getLogger(PCadastrarAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -210,7 +204,6 @@ public class PCadastrarAluno extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCadastrarAluno;
-    private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

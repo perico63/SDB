@@ -86,7 +86,6 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
             modelAlunosMatriculados.insertRow(modelAlunosMatriculados.getRowCount(), new Object[]{arrayAlunosMatriculados.get(i).getCodAluno(),arrayAlunosMatriculados.get(i).getRa(), arrayAlunosMatriculados.get(i).getNome(),
                 arrayAlunosMatriculados.get(i).getCurso(), arrayAlunosMatriculados.get(i).getPeriodo(), arrayAlunosMatriculados.get(i).getEmail(), arrayAlunosMatriculados.get(i).getTelefone()}); 
         }
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -96,7 +95,6 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableEventos = new javax.swing.JTable();
         jBSelecionarAtividade = new javax.swing.JButton();
-        jLResultadoExclusao = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableAlunosMatriculados = new javax.swing.JTable();
 
@@ -162,16 +160,12 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLResultadoExclusao, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3)
                         .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jBSelecionarAtividade)
                         .addContainerGap())))
@@ -184,18 +178,13 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBSelecionarAtividade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(jLResultadoExclusao))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBSelecionarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSelecionarAtividadeActionPerformed
-        
-        //popular table de alunos matriculados
+
         arrayAlunosMatriculados = new ArrayList<>();        
         System.out.println(arrayEventos.get(linha).getCodEvento());                
         String mensagem = "33;"+arrayEventos.get(linha).getCodEvento();
@@ -249,7 +238,6 @@ public final class PConsultarPresenca extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBSelecionarAtividade;
-    private javax.swing.JLabel jLResultadoExclusao;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableAlunosMatriculados;

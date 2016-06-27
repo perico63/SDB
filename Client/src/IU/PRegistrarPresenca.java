@@ -6,12 +6,16 @@
 package IU;
 
 import Mensagem.Mensagem;
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -28,8 +32,8 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
     private Evento eventoSelecionado = null;
     private TPrincipal framePai= null;
     private int linha;    
-    private ArrayList<Aluno> arrayAlunos;
-    private ArrayList<Aluno> arrayAlunosMatriculados;
+    private ArrayList<Aluno> arrayAlunos = null;
+
     /**
      * Creates new form JAlterarAtividade
      */
@@ -63,8 +67,7 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
             evt.setEmail(descAluno[5]);
             evt.setTelefone(descAluno[6]);
             arrayAlunos.add(evt);
-        }
-        
+        }        
         popularTabela();
     }
     
@@ -105,7 +108,6 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jTNome_RA = new javax.swing.JTextField();
         jBConsultarNomeRA = new javax.swing.JButton();
-        jLMsg = new javax.swing.JLabel();
 
         jLabel3.setText("Matricula e presença para evento: ");
 
@@ -174,9 +176,7 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
                             .addComponent(jLabel4))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(12, 587, Short.MAX_VALUE)
                         .addComponent(jBMatricularPresenca)))
                 .addContainerGap())
         );
@@ -197,9 +197,7 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBMatricularPresenca, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLMsg))
+                .addComponent(jBMatricularPresenca, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -227,9 +225,9 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
             Mensagem msg = new Mensagem(resultServidor);
 
             if (msg.avaliarMensagem()) {
-                jLMsg.setText("Aluno Cadastrado!");
+                JOptionPane.showMessageDialog(null, "Aluno Matriculado!");
             } else {
-                jLMsg.setText("Aluno já Cadastrado!");
+                JOptionPane.showMessageDialog(null, "Aluno Já Matriculado Neste Evento!", "Aviso", WARNING_MESSAGE);
             }
 
         } catch (IOException ex) {
@@ -253,7 +251,6 @@ public class PRegistrarPresenca extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBConsultarNomeRA;
     private javax.swing.JButton jBMatricularPresenca;
-    private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLNomeEvento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

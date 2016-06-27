@@ -6,11 +6,14 @@
 package IU;
 
 import Mensagem.Mensagem;
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JTextField;
 
 /**
@@ -18,8 +21,8 @@ import javax.swing.JTextField;
  * @author diego
  */
 public class PCadastrarEvento extends javax.swing.JPanel {
-    TPrincipal framepai = null;
-    String resultServidor = "";
+    private TPrincipal framepai = null;
+    private String resultServidor = "";
     /**
      * Creates new form ManterAtividade
      */
@@ -86,7 +89,6 @@ public class PCadastrarEvento extends javax.swing.JPanel {
         jTData = new javax.swing.JTextField();
         jTHoraInicial = new javax.swing.JTextField();
         jTHoraFinal = new javax.swing.JTextField();
-        jLResultado = new javax.swing.JLabel();
 
         jLabel2.setText("Título:");
 
@@ -204,10 +206,7 @@ public class PCadastrarEvento extends javax.swing.JPanel {
                                 .addComponent(jTTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -223,9 +222,7 @@ public class PCadastrarEvento extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -238,13 +235,9 @@ public class PCadastrarEvento extends javax.swing.JPanel {
     }//GEN-LAST:event_jCBTipoAtividadeActionPerformed
 
     private void jBSalvarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarAtividadeActionPerformed
-    
         System.out.println(jCBTipoAtividade.getModel().getSelectedItem().toString());
-        String tipoAtividade = jCBTipoAtividade.getModel().getSelectedItem().toString();
-        //int codAtividade = retornarCodigoTipoAtividade(jCBTipoAtividade.getModel().getSelectedItem().toString());
-        //System.out.println("CODIGO DA ATIVIDADE " + codAtividade);
-        String mensagem = " ";
-        mensagem = "11;" + jTTitulo.getText() + ";" + jTData.getText() + ";" + jTHoraInicial.getText() + ";" + jTHoraFinal.getText() + ";" + tipoAtividade;
+        String tipoAtividade = jCBTipoAtividade.getModel().getSelectedItem().toString();        
+        String mensagem = "11;" + jTTitulo.getText() + ";" + jTData.getText() + ";" + jTHoraInicial.getText() + ";" + jTHoraFinal.getText() + ";" + tipoAtividade;
         System.out.println(mensagem);
         
         try {
@@ -259,11 +252,10 @@ public class PCadastrarEvento extends javax.swing.JPanel {
             jTHoraFinal.setText("");
             
             if(msg.avaliarMensagem()){
-                jLResultado.setText("Evento Cadastrado");
+                JOptionPane.showMessageDialog(null, "Evento Cadastrado!");
             }else {
-                jLResultado.setText("Evento Não Cadatrado");
-            }
-            
+                JOptionPane.showMessageDialog(null, "Evento Não Cadatrado", "Erro", ERROR_MESSAGE);
+            }            
         } catch (IOException ex) {
             Logger.getLogger(PCadastrarEvento.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -278,7 +270,6 @@ public class PCadastrarEvento extends javax.swing.JPanel {
     private javax.swing.JButton jBSalvarAtividade;
     private javax.swing.JComboBox jCBTipoAtividade;
     private javax.swing.JLabel jLNotificacaoIntervaloInvalido;
-    private javax.swing.JLabel jLResultado;
     private javax.swing.JLabel jLTituloPainelInterno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

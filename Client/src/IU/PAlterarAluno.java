@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JTextField;
 
 /**
@@ -87,7 +89,6 @@ public class PAlterarAluno extends javax.swing.JPanel {
         jTTelefone = new javax.swing.JTextField();
         jBAlterarAluno = new javax.swing.JButton();
         jTCurso = new javax.swing.JTextField();
-        jLMsg = new javax.swing.JLabel();
 
         jLabel1.setText("RA: ");
 
@@ -129,11 +130,9 @@ public class PAlterarAluno extends javax.swing.JPanel {
                             .addComponent(jLabel6))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLMsg, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBAlterarAluno))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBAlterarAluno)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -176,9 +175,7 @@ public class PAlterarAluno extends javax.swing.JPanel {
                     .addComponent(jLabel6)
                     .addComponent(jTTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAlterarAluno)
-                    .addComponent(jLMsg))
+                .addComponent(jBAlterarAluno)
                 .addContainerGap(49, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -208,12 +205,10 @@ public class PAlterarAluno extends javax.swing.JPanel {
             jTTelefone.setText("");
             
             if(msg.avaliarMensagem()){
-                jLMsg.setText("Aluno Alterado!");
+                JOptionPane.showMessageDialog(null, "Aluno Alterado!"); 
             } else {
-                jLMsg.setText("Aluno não Alterado!");
+                JOptionPane.showMessageDialog(null, "Aluno não Alterado!", "Erro", ERROR_MESSAGE); 
             }
-            
-            
         } catch(IOException ex){
             Logger.getLogger(PAlterarAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -222,7 +217,6 @@ public class PAlterarAluno extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAlterarAluno;
-    private javax.swing.JLabel jLMsg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

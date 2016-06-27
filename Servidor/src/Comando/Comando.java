@@ -5,10 +5,10 @@
  */
 package Comando;
 
-import Controle.Aluno;
-import Controle.BD;
-import Controle.Evento;
-import Controle.EventoAluno;
+import Servidor.Aluno;
+import Servidor.BD;
+import Servidor.Evento;
+import Servidor.EventoAluno;
 import java.util.ArrayList;
 
 /**
@@ -36,7 +36,6 @@ public class Comando {
     
     public boolean cadastrarEvento(String nome, String data, String horaInicial, String horaFinal, String tipoEvento){
         Evento novoEvento = new Evento(nome, data, horaInicial, horaFinal, tipoEvento);  
-        System.out.println("Obj Evento Criado");
         banco.cadastrarEvento(novoEvento);   
         return true;
     }
@@ -68,7 +67,6 @@ public class Comando {
     
     public boolean cadastroAluno(String ra, String nome, String curso, String periodo, String email, String telefone){
         Aluno novoaluno = new Aluno(ra, nome, curso, periodo, email, telefone);
-        System.out.println("Obj Aluno Criado");
         banco.cadastrarAluno(novoaluno);
         return true;
     }
@@ -93,7 +91,6 @@ public class Comando {
             }
         }
         EventoAluno novoEventoAluno = new EventoAluno(codEvento, codAluno);
-        System.out.println("Obj EventoAluno Criado");
         banco.matriculaAluno(novoEventoAluno);
         return true;
     }

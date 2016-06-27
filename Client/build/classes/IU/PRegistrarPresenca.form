@@ -41,9 +41,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="jLMsg" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="12" pref="587" max="32767" attributes="0"/>
                       <Component id="jBMatricularPresenca" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -70,10 +68,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="131" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBMatricularPresenca" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="jLMsg" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jBMatricularPresenca" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -144,8 +139,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBConsultarNomeRAActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLMsg">
     </Component>
   </SubComponents>
 </Form>

@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -81,7 +83,6 @@ public final class PSelecionarAluno extends javax.swing.JPanel {
         jTableAlunos = new javax.swing.JTable();
         jBSelecionarAtividade = new javax.swing.JButton();
         jBExcluirAtividade = new javax.swing.JButton();
-        jLResultadoExclusao = new javax.swing.JLabel();
 
         jTableAlunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,9 +132,7 @@ public final class PSelecionarAluno extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLResultadoExclusao, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(12, 611, Short.MAX_VALUE)
                         .addComponent(jBExcluirAtividade)
                         .addGap(26, 26, 26)
                         .addComponent(jBSelecionarAtividade)))
@@ -145,11 +144,9 @@ public final class PSelecionarAluno extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBSelecionarAtividade)
-                        .addComponent(jBExcluirAtividade))
-                    .addComponent(jLResultadoExclusao))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBSelecionarAtividade)
+                    .addComponent(jBExcluirAtividade))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -190,9 +187,9 @@ public final class PSelecionarAluno extends javax.swing.JPanel {
             Mensagem msg = new Mensagem(resultServidor);
 
             if(msg.avaliarMensagem()){
-                jLResultadoExclusao.setText("Aluno Excluido");
+                JOptionPane.showMessageDialog(null, "Aluno Excluido!");
             }else {
-                jLResultadoExclusao.setText("Aluno Não Excluido");
+                JOptionPane.showMessageDialog(null, "Aluno Não Excluido!", "Erro", ERROR_MESSAGE);
             }
         } catch (IOException ex) {
             Logger.getLogger(PAlterarEvento.class.getName()).log(Level.SEVERE, null, ex);
@@ -211,7 +208,6 @@ public final class PSelecionarAluno extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBExcluirAtividade;
     private javax.swing.JButton jBSelecionarAtividade;
-    private javax.swing.JLabel jLResultadoExclusao;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableAlunos;
     // End of variables declaration//GEN-END:variables

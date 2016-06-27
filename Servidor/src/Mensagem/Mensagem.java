@@ -5,7 +5,7 @@
  */
 package Mensagem;
 import Comando.Comando;
-import Controle.BD;
+import Servidor.BD;
 /**
  *
  * @author diego
@@ -93,7 +93,6 @@ public class Mensagem {
             default:
                respostaServidor = "00";        
         }      
-        
         return respostaServidor;
     }    
     

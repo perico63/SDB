@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JTextField;
 
 /**
@@ -84,7 +86,6 @@ public class PAlterarEvento extends javax.swing.JPanel {
         jTData = new javax.swing.JTextField();
         jTHoraInicial = new javax.swing.JTextField();
         jTHoraFinal = new javax.swing.JTextField();
-        jLResultadoAlteracao = new javax.swing.JLabel();
 
         jLabel2.setText("Título:");
 
@@ -202,10 +203,7 @@ public class PAlterarEvento extends javax.swing.JPanel {
                                 .addComponent(jTTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLResultadoAlteracao, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -221,9 +219,7 @@ public class PAlterarEvento extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLResultadoAlteracao, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -236,15 +232,10 @@ public class PAlterarEvento extends javax.swing.JPanel {
     }//GEN-LAST:event_jCBTipoAtividadeActionPerformed
 
     private void jBAlterarAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAlterarAtividadeActionPerformed
-        
-        //13;código evento;nome;data;hora inicial;hora final;código tipo de evento
-        
+ 
         System.out.println(jCBTipoAtividade.getModel().getSelectedItem().toString());
         String tipoAtividade = jCBTipoAtividade.getModel().getSelectedItem().toString();
-        //int codAtividade = retornarCodigoTipoAtividade(jCBTipoAtividade.getModel().getSelectedItem().toString());
-        String mensagem = " ";
-        mensagem = "13;" + eventoSelecionado.getCodEvento() + ";" + jTTitulo.getText() + ";" + jTData.getText() + ";" + jTHoraInicial.getText() + ";" + jTHoraFinal.getText() + ";" + tipoAtividade;
-        //System.out.println(mensagem);
+        String mensagem = "13;" + eventoSelecionado.getCodEvento() + ";" + jTTitulo.getText() + ";" + jTData.getText() + ";" + jTHoraInicial.getText() + ";" + jTHoraFinal.getText() + ";" + tipoAtividade;
      
         try {
             framePai.getOut().writeUTF(mensagem);
@@ -258,16 +249,13 @@ public class PAlterarEvento extends javax.swing.JPanel {
             jTHoraFinal.setText("");
 
             if(msg.avaliarMensagem()){
-                jLResultadoAlteracao.setText("Evento Alterado");
+                JOptionPane.showMessageDialog(null, "Evento Alterado!");                
             }else {
-                jLResultadoAlteracao.setText("Evento Não Alterado");
+                JOptionPane.showMessageDialog(null, "Evento Não Alterado!", "Erro", ERROR_MESSAGE);
             }
         } catch (IOException ex) {
             Logger.getLogger(PAlterarEvento.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-
-       
         this.jBAlterarAtividade.setEnabled(false);
     }//GEN-LAST:event_jBAlterarAtividadeActionPerformed
 
@@ -280,7 +268,6 @@ public class PAlterarEvento extends javax.swing.JPanel {
     private javax.swing.JButton jBAlterarAtividade;
     private javax.swing.JComboBox jCBTipoAtividade;
     private javax.swing.JLabel jLNotificacaoIntervaloInvalido;
-    private javax.swing.JLabel jLResultadoAlteracao;
     private javax.swing.JLabel jLTituloPainelInterno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

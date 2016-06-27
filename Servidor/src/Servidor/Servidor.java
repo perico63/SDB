@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controle;
+package Servidor;
 
 import Mensagem.Mensagem;
 import java.io.DataInputStream;
@@ -32,11 +32,11 @@ public class Servidor extends Thread {
             ServerSocket serverSocket = new ServerSocket(porta);
             while(true){    
                  try{
-                    System.out.println("Esperando conexoes...");
+                    System.out.println("Esperando CONEXOES...");
                     Socket client = serverSocket.accept();
                     new Servidor(client);
                 } catch (IOException e) {
-                    System.err.println("Falha na conexao");
+                    System.err.println("Falha na Conexao!");
                 }
             }   
         } catch (Exception e){
@@ -47,18 +47,14 @@ public class Servidor extends Thread {
     @Override
     public void run(){
         try{
-            System.out.println("Novo Cliente Conectado");
+            System.out.println("Novo Cliente Conectado!");
             DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
             DataInputStream in = new DataInputStream(clientSocket.getInputStream()); 
             while(true) {                              
                 Mensagem msg = new Mensagem(in.readUTF(), banco);
                 String result = msg.avaliarMensagem();            
                 out.writeUTF(result); 
-            }
-            //out.close();
-            //in.close();
-            //clientSocket.close();
-            //System.out.println("Conexao atual encerrada");            
+            }            
         } catch(IOException e){
             
         }

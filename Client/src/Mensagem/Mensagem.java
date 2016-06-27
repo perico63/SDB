@@ -19,61 +19,15 @@ public class Mensagem {
         this.mensagem = mensagem;
     }
     
-    public boolean avaliarMensagem(){
-    
-        String m[] = this.mensagem.split(";");
-        
-        switch(m[0]){
-            case "02":
-                if(m[1].equals("1")){
-                    return true;
-                }else if (m[1].equals("0")){
-                    return false;
-                } 
-            case "12": 
-                if(m[1].equals("1")){
-                    return true;
-                }else if (m[1].equals("0")){
-                    return false;
-                } 
-            case "14":
-                if(m[1].equals("1")){
-                    return true;
-                } else if(m[1].equals("0")){
-                    return false;
-                }
-            case "16":
-                 if(m[1].equals("1")){
-                    return true;
-                } else if(m[1].equals("0")){
-                    return false;
-                }    
-            case "22": 
-                if(m[1].equals("1")){
-                    return true;
-                } else if(m[1].equals("0")){
-                    return false;
-                }
-            case "24":
-                if(m[1].equals("1")){
-                    return true;
-                } else if(m[1].equals("0")){
-                    return false;
-                }
-            case "26":
-                if(m[1].equals("1")){
-                    return true;
-                } else if(m[1].equals("0")){
-                    return false;
-                }
-            case "32":
+    public boolean avaliarMensagem(){    
+        String m[] = this.mensagem.split(";");        
+        if(m[0].equals("02") || m[0].equals("12") || m[0].equals("14") || m[0].equals("16") || m[0].equals("22") ||
+                m[0].equals("24") || m[0].equals("26") || m[0].equals("32")){
             if(m[1].equals("1")){
-                return true;
-            } else if(m[1].equals("0")){
-                return false;
-            }
-            default :
-                break;
+                    return true;
+                }else if (m[1].equals("0")){
+                    return false;
+                } 
         }
         return false;
     }
