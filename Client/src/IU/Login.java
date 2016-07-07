@@ -11,6 +11,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.SSLSocket;
@@ -196,14 +197,12 @@ public class Login extends javax.swing.JFrame {
                                
             } else{
                 JOptionPane.showMessageDialog(null, "Usuario/Senha Inválidos", "Erro", ERROR_MESSAGE);            
-            }            
-            //out.close();
-            //in.close();
-            //clientSocket.close();
-            
-        } catch (IOException ex) {
+            }                        
+        } catch (SocketException e ) {
+            JOptionPane.showMessageDialog(null, "Porta/IP INCORRETO!", "Erro", ERROR_MESSAGE);  
+        } catch (IOException ex){
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }      
+        }    
         
     }//GEN-LAST:event_btn_LogarActionPerformed
 

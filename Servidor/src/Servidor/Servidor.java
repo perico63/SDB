@@ -11,6 +11,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,10 +27,10 @@ public class Servidor extends Thread {
     }
     
     public static void main(String[] args) {
-       
-        int porta = 4321;        
+        
+        String porta = JOptionPane.showInputDialog("Informe a Porta do Servidor");  
         try {            
-            ServerSocket serverSocket = new ServerSocket(porta);
+            ServerSocket serverSocket = new ServerSocket(Integer.parseInt(porta));
             while(true){    
                  try{
                     System.out.println("Esperando CONEXOES...");
